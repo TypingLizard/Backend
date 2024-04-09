@@ -5,6 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Project: Typing_Lizzard_Backend
+ * Author : Alexander Friedl
+ * Date : 09.04.2024
+ * Time : 14:03
+ */
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -20,4 +27,7 @@ public class Word {
     private Integer rating;
 
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "mode_id")
+    private Mode mode;
 }

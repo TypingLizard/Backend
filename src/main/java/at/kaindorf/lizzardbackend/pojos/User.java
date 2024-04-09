@@ -7,6 +7,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Project: Typing_Lizzard_Backend
+ * Author : Alexander Friedl
+ * Date : 09.04.2024
+ * Time : 14:02
+ */
+
+
 @Entity
 @Data
 @NoArgsConstructor
