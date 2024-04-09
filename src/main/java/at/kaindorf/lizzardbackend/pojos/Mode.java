@@ -26,4 +26,6 @@ public class Mode {
     private Double modeWords;
 
 
+
+
 }

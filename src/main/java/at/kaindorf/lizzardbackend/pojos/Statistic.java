@@ -1,9 +1,6 @@
 package at.kaindorf.lizzardbackend.pojos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,5 +28,10 @@ public class Statistic {
     private Double typingTime;
 
     private LocalDateTime date;
+
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
