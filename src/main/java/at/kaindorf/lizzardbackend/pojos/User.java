@@ -19,14 +19,17 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "Player")
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long user_id;
 
     private String userName;
 
     private String password;
+    private String email;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Statistic> statisticList;
