@@ -1,5 +1,6 @@
 package at.kaindorf.lizzardbackend.web;
 
+import at.kaindorf.lizzardbackend.database.WordRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,4 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequiredArgsConstructor
 public class WordService {
+
+
+    private final WordRepository wordRepo;
+
+
+    //get Words by mode ID
+
 }
