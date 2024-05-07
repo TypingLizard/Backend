@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.imageio.spi.ServiceRegistry;
 
 /**
- * Project: Typing_Lizzard_Backend
+ * Project: Typing_Lizard_Backend
  * Author : Alexander Friedl
  * Date : 10.04.2024
  * Time : 11:08
@@ -23,4 +23,7 @@ import javax.imageio.spi.ServiceRegistry;
 public class StatiscticsService {
 
     private final StatisticRepository statisticRepo;
+
+    // get the stats from a certain user
+    // post a new stat
 }

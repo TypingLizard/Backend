@@ -22,7 +22,7 @@ public class Word {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private String Word;
+    private String word;
 
     private Integer rating;
 

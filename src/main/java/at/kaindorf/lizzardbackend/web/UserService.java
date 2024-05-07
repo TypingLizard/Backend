@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Project: Typing_Lizzard_Backend
+ * Project: Typing_Lizard_Backend
  * Author : Alexander Friedl
  * Date : 10.04.2024
  * Time : 11:03
@@ -22,4 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserService {
 
     private final UserRepository userRepo;
+
+    // get the user to login
+    // post a new user
+    // update an user
 }
