@@ -23,6 +23,7 @@ public class Mode {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long modeId;
 
+    @Column(unique = true)
     private String modeName;
 
     private Double modeTime;

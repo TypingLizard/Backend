@@ -22,6 +22,7 @@ public class Word {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long wordId;
 
+    @Column(unique = true)
     private String wordName;
 
     private Integer rating;

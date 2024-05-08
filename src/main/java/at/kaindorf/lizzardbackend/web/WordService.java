@@ -43,7 +43,7 @@ public class WordService {
 
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<Word> getModeById(@PathVariable Long id){
+    public ResponseEntity<Word> getWordById(@PathVariable Long id){
         Optional<Word> optionalWord = wordRepo.findById(id);
 
         return ResponseEntity.of(optionalWord);
@@ -51,7 +51,7 @@ public class WordService {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Long> deleteMode(@PathVariable Long id) {
+    public ResponseEntity<Long> deleteWord(@PathVariable Long id) {
         wordRepo.deleteById(id);
         return ResponseEntity.accepted().body(id);
     }

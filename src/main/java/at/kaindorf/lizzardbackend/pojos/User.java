@@ -29,6 +29,7 @@ public class User {
     private String userName;
 
     private String password;
+    @Column(unique = true)
     private String email;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
