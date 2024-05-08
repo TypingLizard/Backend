@@ -17,4 +17,6 @@ public interface ModeRepository extends JpaRepository<Mode, Long> {
 
     @Query("SELECT m.modeId FROM Mode m WHERE m.modeName = :name")
     Long idFromName(String name);
+
+
 }

@@ -20,9 +20,9 @@ public class Word {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Long wordId;
 
-    private String word;
+    private String wordName;
 
     private Integer rating;
 

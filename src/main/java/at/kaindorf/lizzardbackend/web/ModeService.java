@@ -4,11 +4,16 @@ import at.kaindorf.lizzardbackend.database.ModeRepository;
 import at.kaindorf.lizzardbackend.pojos.Mode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,6 +32,17 @@ public class ModeService {
     private final ModeRepository modeRepo;
 
 
+    @GetMapping("/")
+    public ResponseEntity<List<Mode>> getAllModes( ) {
+
+
+        List<Mode> modeList = modeRepo.findAll();
+        if (modeList.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(modeList);
+    }
+
 
     @GetMapping("/id/{id}")
     public ResponseEntity<Mode> getModeById(@PathVariable Long id){
@@ -43,6 +59,10 @@ public class ModeService {
 
     @PostMapping("/")
     public ResponseEntity<String> addMode(@RequestBody Mode mode){
+
+       if (modeRepo.idFromName(mode.getModeName()) != null){
+           return ResponseEntity.badRequest().body("Already exists");
+       }
 
 
         modeRepo.save(mode);
