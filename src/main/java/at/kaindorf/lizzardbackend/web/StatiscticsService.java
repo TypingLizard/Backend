@@ -37,7 +37,7 @@ public class StatiscticsService {
     @GetMapping("/user/{id}")
     public ResponseEntity<List<Statistic>> getStatsFromUserByID(@PathVariable Long id){
 
-        List<Statistic> statisticsList = statisticRepo.findAll();
+        List<Statistic> statisticsList = statisticRepo.statsFromUser(id);
         if (statisticsList.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -47,10 +47,13 @@ public class StatiscticsService {
     @PostMapping("/")
     public ResponseEntity<String> addStatistic(@RequestBody Statistic statistic){
 
+        /**
         if (statisticRepo.lastDate(statistic.getId()).isAfter(statistic.getDate()) ||
                 statisticRepo.lastDate(statistic.getId()) == (statistic.getDate())){
             return ResponseEntity.badRequest().body("Already exists");
         }
+        **/
+
 
         statisticRepo.save(statistic);
 
