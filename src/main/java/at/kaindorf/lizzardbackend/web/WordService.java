@@ -51,7 +51,7 @@ public class WordService {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Long> deleteWord(@PathVariable Long id) {
+    public ResponseEntity<Long> deleteWordById(@PathVariable Long id) {
         wordRepo.deleteById(id);
         return ResponseEntity.accepted().body(id);
     }

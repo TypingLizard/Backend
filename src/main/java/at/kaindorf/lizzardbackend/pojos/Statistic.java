@@ -28,10 +28,11 @@ public class Statistic {
 
     private Double accuracy;
 
-    private String testTypes;
+    private String testType;
 
     private Double typingTime;
 
+    @Column(unique = true)
     private LocalDateTime date;
 
 

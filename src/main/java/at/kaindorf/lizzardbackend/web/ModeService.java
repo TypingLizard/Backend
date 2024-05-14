@@ -51,7 +51,7 @@ public class ModeService {
     }
 
     @GetMapping("/name/{name}")
-    public ResponseEntity<Mode> getModebyName(@PathVariable String name){
+    public ResponseEntity<Mode> getModeByName(@PathVariable String name){
         Long id = modeRepo.idFromName(name);
         Optional<Mode> optionalMode = modeRepo.findById(id);
         return ResponseEntity.of(optionalMode);
