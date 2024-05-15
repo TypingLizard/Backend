@@ -1,5 +1,6 @@
 package at.kaindorf.lizzardbackend.pojos;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +28,7 @@ public class Word {
 
     private Integer rating;
 
-
+    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "mode_id")
     private Mode mode;

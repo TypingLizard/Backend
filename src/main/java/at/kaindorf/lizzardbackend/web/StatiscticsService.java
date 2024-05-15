@@ -1,6 +1,7 @@
 package at.kaindorf.lizzardbackend.web;
 
 import at.kaindorf.lizzardbackend.database.StatisticRepository;
+import at.kaindorf.lizzardbackend.database.UserRepository;
 import at.kaindorf.lizzardbackend.pojos.Statistic;
 import at.kaindorf.lizzardbackend.pojos.User;
 import at.kaindorf.lizzardbackend.pojos.Word;
@@ -29,6 +30,8 @@ import java.util.Optional;
 public class StatiscticsService {
 
     private final StatisticRepository statisticRepo;
+    private final UserRepository userRepository;
+
 
     // get the stats from a certain user
     // post a new stat
@@ -44,8 +47,8 @@ public class StatiscticsService {
         return ResponseEntity.ok(statisticsList);
     }
 
-    @PostMapping("/")
-    public ResponseEntity<String> addStatistic(@RequestBody Statistic statistic){
+    @PostMapping("/{userId}")
+    public ResponseEntity<String> addStatistic(@RequestBody Statistic statistic, @PathVariable Long userId){
 
         /**
         if (statisticRepo.lastDate(statistic.getId()).isAfter(statistic.getDate()) ||
@@ -53,6 +56,12 @@ public class StatiscticsService {
             return ResponseEntity.badRequest().body("Already exists");
         }
         **/
+
+        System.out.println(userId);
+
+        Optional<User> user = userRepository.findById(userId);
+
+        user.ifPresent(statistic::setUser);
 
 
         statisticRepo.save(statistic);

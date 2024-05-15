@@ -35,7 +35,7 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Statistic> statisticList;
 }

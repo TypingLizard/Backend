@@ -1,5 +1,6 @@
 package at.kaindorf.lizzardbackend.pojos;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +31,7 @@ public class Mode {
 
     private Double modeWords;
 
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "mode", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Word> wordList;
 

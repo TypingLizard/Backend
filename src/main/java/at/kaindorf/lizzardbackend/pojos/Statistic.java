@@ -40,6 +40,8 @@ public class Statistic {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime date;
 
+
+    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "user_id")
     private User user;

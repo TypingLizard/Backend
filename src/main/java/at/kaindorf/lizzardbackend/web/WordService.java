@@ -1,7 +1,9 @@
 package at.kaindorf.lizzardbackend.web;
 
+import at.kaindorf.lizzardbackend.database.ModeRepository;
 import at.kaindorf.lizzardbackend.database.WordRepository;
 import at.kaindorf.lizzardbackend.pojos.Mode;
+import at.kaindorf.lizzardbackend.pojos.User;
 import at.kaindorf.lizzardbackend.pojos.Word;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,8 @@ public class WordService {
 
 
     private final WordRepository wordRepo;
+    private final ModeRepository modeRepo;
+
 
 
     @GetMapping("/")
@@ -57,12 +61,18 @@ public class WordService {
     }
 
 
-    @PostMapping("/")
-    public ResponseEntity<String> addMode(@RequestBody Word word){
+    @PostMapping("/{modeId}")
+    public ResponseEntity<String> addMode(@RequestBody Word word, @PathVariable Long modeId){
 
         if (wordRepo.idFromName(word.getWordName()) != null) {
             return ResponseEntity.badRequest().body("Already exists");
         }
+
+        System.out.println(modeId);
+
+        Optional<Mode> mode = modeRepo.findById(modeId);
+
+        mode.ifPresent(word::setMode);
 
         wordRepo.save(word);
 
