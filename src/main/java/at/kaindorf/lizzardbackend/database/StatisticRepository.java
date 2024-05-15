@@ -15,8 +15,7 @@ import java.util.List;
  */
 public interface StatisticRepository extends JpaRepository<Statistic, Long> {
 
-    @Query("SELECT s.date FROM Statistic s WHERE s.id = :id " +
-            "AND s.date = (SELECT MAX(s.date) FROM Statistic s WHERE s.id = :id)")
+    @Query("SELECT MAX(s.date) FROM Statistic s WHERE s.user.userId = :id")
     LocalDateTime lastDate(Long id);
 
     @Query("SELECT s FROM Statistic s WHERE s.user.userId = :id ")

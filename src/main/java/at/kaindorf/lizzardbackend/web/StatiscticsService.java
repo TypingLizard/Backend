@@ -50,14 +50,16 @@ public class StatiscticsService {
     @PostMapping("/{userId}")
     public ResponseEntity<String> addStatistic(@RequestBody Statistic statistic, @PathVariable Long userId){
 
-        /**
-        if (statisticRepo.lastDate(statistic.getId()).isAfter(statistic.getDate()) ||
-                statisticRepo.lastDate(statistic.getId()) == (statistic.getDate())){
-            return ResponseEntity.badRequest().body("Already exists");
-        }
-        **/
 
-        System.out.println(userId);
+        System.out.println(statisticRepo.lastDate(userId));
+        System.out.println(statistic.getDate());
+
+        if (statisticRepo.lastDate(userId).isAfter(statistic.getDate()) ||
+                statisticRepo.lastDate(userId).equals(statistic.getDate())){
+            return ResponseEntity.badRequest().body("Wrong Date, to early");
+        }
+
+
 
         Optional<User> user = userRepository.findById(userId);
 

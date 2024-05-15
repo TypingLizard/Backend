@@ -36,7 +36,7 @@ public class Statistic {
 
     private Double typingTime;
 
-
+    @Column(unique = true, nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime date;
 
