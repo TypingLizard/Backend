@@ -59,8 +59,6 @@ public class StatiscticsService {
             return ResponseEntity.badRequest().body("Wrong Date, to early");
         }
 
-
-
         Optional<User> user = userRepository.findById(userId);
 
         user.ifPresent(statistic::setUser);

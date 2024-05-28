@@ -7,6 +7,10 @@ import at.kaindorf.lizzardbackend.pojos.User;
 import at.kaindorf.lizzardbackend.pojos.Word;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -32,19 +36,23 @@ public class WordService {
     private final WordRepository wordRepo;
     private final ModeRepository modeRepo;
 
+    private static final int PAGE_SIZE = 10;
+
 
 
     @GetMapping("/")
-    public ResponseEntity<List<Word>> getAllWords( ) {
+    public ResponseEntity<Page<Word>> getAllWords(@RequestParam(name = "pageNo", required = false, defaultValue = "0") Integer pageNo) {
+
+        Pageable pageable = PageRequest.of(pageNo, PAGE_SIZE);
+//
 
 
-        List<Word> wordList = wordRepo.findAll();
+        Page<Word> wordList = wordRepo.findAll(pageable);
         if (wordList.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(wordList);
     }
-
 
     @GetMapping("/id/{id}")
     public ResponseEntity<Word> getWordById(@PathVariable Long id){

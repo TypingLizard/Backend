@@ -29,8 +29,6 @@ public class Mode {
 
     private Double modeTime;
 
-    private Double modeWords;
-
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "mode", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Word> wordList;

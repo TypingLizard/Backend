@@ -26,7 +26,7 @@ public class Word {
     @Column(unique = true)
     private String wordName;
 
-    private Integer rating;
+    private Long rating;
 
     @JsonBackReference
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
