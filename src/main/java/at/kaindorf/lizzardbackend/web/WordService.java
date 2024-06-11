@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,13 +53,6 @@ public class WordService {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(wordList);
-    }
-
-    @GetMapping("/id/{id}")
-    public ResponseEntity<Word> getWordById(@PathVariable Long id){
-        Optional<Word> optionalWord = wordRepo.findById(id);
-
-        return ResponseEntity.of(optionalWord);
     }
 
 

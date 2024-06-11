@@ -14,7 +14,7 @@
     <name>Typing_Lizzard_Backend</name>
     <description>Typing_Lizzard_Backend</description>
     <properties>
-        <java.version>22</java.version>
+        <java.version>20</java.version>
     </properties>
     <dependencies>
         <dependency>
