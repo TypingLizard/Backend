@@ -20,7 +20,7 @@ import java.util.Optional;
  * Date : 10.04.2024
  * Time : 11:03
  */
-
+/*
 @RestController
 @RequestMapping("/user")
 @CrossOrigin("*")
@@ -79,3 +79,4 @@ public class UserService {
 
 
 }
+*/

@@ -45,7 +45,6 @@ public class WordService {
     public ResponseEntity<Page<Word>> getAllWords(@RequestParam(name = "pageNo", required = false, defaultValue = "0") Integer pageNo) {
 
         Pageable pageable = PageRequest.of(pageNo, PAGE_SIZE);
-//
 
 
         Page<Word> wordList = wordRepo.findAll(pageable);

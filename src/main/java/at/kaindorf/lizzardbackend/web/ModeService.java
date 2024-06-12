@@ -64,7 +64,6 @@ public class ModeService {
            return ResponseEntity.badRequest().body("Already exists");
        }
 
-
         modeRepo.save(mode);
 
         URI location = ServletUriComponentsBuilder
