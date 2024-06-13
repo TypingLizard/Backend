@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,6 +24,7 @@ import java.util.function.Function;
  */
 
 @Service
+@Slf4j
 public class JwtService {
 
 
@@ -40,6 +42,7 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails user) {
+        log.info("generating token");
         return generateToken(new HashMap<>(), user);
     }
 

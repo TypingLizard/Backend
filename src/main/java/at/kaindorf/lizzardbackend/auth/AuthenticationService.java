@@ -5,6 +5,7 @@ import at.kaindorf.lizzardbackend.database.UserRepository;
 import at.kaindorf.lizzardbackend.pojos.Role;
 import at.kaindorf.lizzardbackend.pojos.User;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticationService {
 
 
@@ -46,19 +48,29 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        System.out.println(request);
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
-                        request.getPassword())
-        );
+        System.out.println("Authenticating user in authenticate: " + request.getUsername());
 
-        var user = repository.findByUsername(request.getUsername())
-                        .orElseThrow();
+        try {
+            log.info("HALLO");
+
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getUsername(),
+                            request.getPassword()
+                    )
+            );
+        } catch (Exception e) {
+            log.error("Authentication failed", e);
+            throw e;
+        }
+
+
+                var user = repository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         var jwtToken = jwtService.generateToken(user);
+        System.out.println("Generated JWT Token: " + jwtToken);
 
-        System.out.printf(jwtToken);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

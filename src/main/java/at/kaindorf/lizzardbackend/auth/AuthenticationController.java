@@ -31,13 +31,11 @@ public class AuthenticationController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request)
-    {
-
-        System.out.println(request);
-
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
+        System.out.println("Authenticating user in PostMapping: " + request.getUsername());
         return ResponseEntity.ok(service.authenticate(request));
     }
+
 
 
 }
