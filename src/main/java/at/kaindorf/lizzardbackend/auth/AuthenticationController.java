@@ -1,7 +1,6 @@
 package at.kaindorf.lizzardbackend.auth;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,8 +31,10 @@ public class AuthenticationController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthenticationRequest request)
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request)
     {
+
+        System.out.println(request);
 
         return ResponseEntity.ok(service.authenticate(request));
     }

@@ -46,6 +46,7 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        System.out.println(request);
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
@@ -53,10 +54,11 @@ public class AuthenticationService {
         );
 
         var user = repository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new UsernameNotFoundException(request.getUsername()));
-
+                        .orElseThrow();
 
         var jwtToken = jwtService.generateToken(user);
+
+        System.out.printf(jwtToken);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
