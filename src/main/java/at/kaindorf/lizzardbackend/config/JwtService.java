@@ -30,11 +30,11 @@ public class JwtService {
 
     private static final String SECRET_KEY = "9e63b71f8a7e3de62e0a303affdb328a664122489c7d88342313b104abe5d5c9";
 
-    public static String extractUsername(String token) {
+    public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public static <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
@@ -69,7 +69,7 @@ public class JwtService {
     return extractClaim(token, Claims::getExpiration);
     }
 
-    private static Claims extractAllClaims(String token) {
+    private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSinginKey())
                 .build()
@@ -77,7 +77,7 @@ public class JwtService {
                 .getBody();
     }
 
-    private static Key getSinginKey() {
+    private Key getSinginKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
