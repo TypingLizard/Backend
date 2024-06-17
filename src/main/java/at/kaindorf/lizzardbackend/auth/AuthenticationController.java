@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Project: Typing_Lizzard_Backend
+ * Project: Typing_Lizard_Backend
  * Author : Alexander Friedl
  * Date : 12.06.2024
  * Time : 17:46
@@ -22,6 +22,8 @@ public class AuthenticationController {
 
     private final AuthenticationService service;
 
+
+    // route to access register which is used to register, this returns the token
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request)
     {
@@ -30,6 +32,8 @@ public class AuthenticationController {
 
     }
 
+
+    // route to access authenticate which is used to login, this returns the token
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
         System.out.println("Authenticating user in PostMapping: " + request.getUsername());

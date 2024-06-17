@@ -8,5 +8,6 @@ package at.kaindorf.lizzardbackend.pojos;
  */
 public enum Role {
 
+    // the two roles a user can have
     USER, ADMIN
 }

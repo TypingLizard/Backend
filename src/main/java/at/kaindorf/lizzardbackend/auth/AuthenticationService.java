@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
- * Project: Typing_Lizzard_Backend
+ * Project: Typing_Lizard_Backend
  * Author : Alexander Friedl
  * Date : 12.06.2024
  * Time : 17:53
@@ -32,6 +32,8 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+
+        //build the user, get the data provided by the user, encode the password and give him the USER role
         var user = User.builder()
                 .email(request.getEmail())
                 .username(request.getUsername())
@@ -39,7 +41,11 @@ public class AuthenticationService {
                 .role(Role.USER)
                 .build();
 
+
+        //post the user in the database
         repository.save(user);
+
+        //create the jwt token and return it to the endpoint
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
@@ -51,8 +57,7 @@ public class AuthenticationService {
         System.out.println("Authenticating user in authenticate: " + request.getUsername());
 
         try {
-            log.info("HALLO");
-
+            // check if the account still exist or has other issues
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             request.getUsername(),
@@ -64,13 +69,15 @@ public class AuthenticationService {
             throw e;
         }
 
+        //search the user by the username
+        var user = repository.findByUsername(request.getUsername())
+                             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-                var user = repository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
+        //generate a token
         var jwtToken = jwtService.generateToken(user);
         System.out.println("Generated JWT Token: " + jwtToken);
 
+        //return the token
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

@@ -24,7 +24,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/mode")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000")
 @Slf4j
 @RequiredArgsConstructor
 public class ModeService {
@@ -92,7 +92,4 @@ public class ModeService {
         return ResponseEntity.notFound().build();
     }
 
-    // get the mode
-    // post a new mode
-    // change a mode
 }

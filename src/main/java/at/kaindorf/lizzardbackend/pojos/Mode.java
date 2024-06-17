@@ -15,6 +15,8 @@ import java.util.List;
  * Time : 14:02
  */
 
+
+// every word is inside a mode and you get the mod to get all the words
 @Entity
 @Data
 @AllArgsConstructor

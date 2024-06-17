@@ -18,6 +18,8 @@ import java.time.LocalDateTime;
  * Time : 14:02
  */
 
+
+// users get a statistic after every game which is saved
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

@@ -24,7 +24,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/statistic")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000")
 @Slf4j
 @RequiredArgsConstructor
 public class StatiscticsService {

@@ -6,19 +6,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * Project: Typing_Lizzard_Backend
+ * Project: Typing_Lizard_Backend
  * Author : Alexander Friedl
  * Date : 12.06.2024
  * Time : 17:25
@@ -30,13 +26,14 @@ public class ApplicationConfig {
 
     private final UserRepository repository;
 
-
+    // Bean to provide user details service
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> repository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
     }
 
+    // Bean to provide the authentication provider
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -45,11 +42,13 @@ public class ApplicationConfig {
         return provider;
     }
 
+    // Bean to provide the authentication manager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
+    // Bean to provide the password encoder
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
