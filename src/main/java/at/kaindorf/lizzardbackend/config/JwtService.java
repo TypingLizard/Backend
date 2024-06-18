@@ -43,7 +43,7 @@ public class JwtService {
 
 
     /**
-     * extract a specific claim from the token
+     * the function extracts a specific claim from the token
      * @param token
      * @param claimsResolver
      * @return
@@ -54,8 +54,9 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
+
     /**
-     * generate a token for the given user
+     * the function generates a user if you don't already have a user
      * @param user
      * @return
      */
@@ -66,7 +67,7 @@ public class JwtService {
 
 
     /**
-     * generate a token with additional claims for the given user
+     * the function generates a token with additional claims for the given user
      * @param extractClaims
      * @param user
      * @return
@@ -83,7 +84,7 @@ public class JwtService {
     }
 
     /**
-     * validate the token against the given user details
+     * the function validates the token against the given user details
      * @param token
      * @param user
      * @return
@@ -95,7 +96,7 @@ public class JwtService {
 
 
     /**
-     * check if the token is expired
+     * the function checks if the token is expired
      * @param token
      * @return
      */
@@ -104,7 +105,7 @@ public class JwtService {
     }
 
     /**
-     * extract the expiration date from the token
+     * the function extracts the expiration date from the token
      * @param token
      * @return
      */
@@ -113,7 +114,7 @@ public class JwtService {
     }
 
     /**
-     * extract all claims from the token
+     * the function extracts all claims from the token
      * @param token
      * @return
      */
@@ -125,10 +126,7 @@ public class JwtService {
                 .getBody();
     }
 
-    /**
-     * get the signing key for encoding/decoding the token
-     * @return
-     */
+
     private Key getSinginKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);

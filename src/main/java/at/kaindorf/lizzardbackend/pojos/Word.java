@@ -19,6 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Word {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long wordId;
@@ -33,3 +34,6 @@ public class Word {
     @JoinColumn(name = "mode_id")
     private Mode mode;
 }
+
+
+
