@@ -3,21 +3,17 @@ package at.kaindorf.lizzardbackend.web;
 import at.kaindorf.lizzardbackend.database.ModeRepository;
 import at.kaindorf.lizzardbackend.database.WordRepository;
 import at.kaindorf.lizzardbackend.pojos.Mode;
-import at.kaindorf.lizzardbackend.pojos.User;
 import at.kaindorf.lizzardbackend.pojos.Word;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 /**

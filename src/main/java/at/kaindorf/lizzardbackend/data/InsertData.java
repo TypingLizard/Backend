@@ -7,10 +7,8 @@ import at.kaindorf.lizzardbackend.pojos.Word;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -61,7 +59,7 @@ public class InsertData {
             log.info(words.toString());
             wordRepo.saveAll(words);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
 
 
@@ -81,7 +79,6 @@ public class InsertData {
                 log.info("length is {}", parts.length);
                 String wordName = parts[2];
                 Long rating = Long.parseLong(parts[3]);
-                Long modeId = Long.parseLong(parts[1]);
                 Long wordId = Long.parseLong(parts[0]);
 
 

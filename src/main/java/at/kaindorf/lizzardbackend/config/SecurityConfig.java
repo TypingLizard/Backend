@@ -1,7 +1,7 @@
 package at.kaindorf.lizzardbackend.config;
 
 
-import jakarta.servlet.Filter;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -55,7 +55,7 @@ public class SecurityConfig {
 
 
     /**
-     *  this is needed so it request endpoints from http://localhost:3000 and http://localhost:8080
+     *  this is needed so if it requests endpoints from http://localhost:3000 and http://localhost:8080
      *  could be changed after this product would be deployed on a server which is not going to happen
      * @return
      */

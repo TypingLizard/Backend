@@ -33,7 +33,7 @@ public class AuthenticationController {
     }
 
 
-    // route to access authenticate which is used to login, this returns the token
+    // route to access authenticate which is used to log in, this returns the token
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
         System.out.println("Authenticating user in PostMapping: " + request.getUsername());

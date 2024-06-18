@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * Project: Typing_Lizzard_Backend
+ * Project: Typing_Lizard_Backend
  * Author : Alexander Friedl
  * Date : 09.04.2024
  * Time : 14:02
  */
 
 
-// every word is inside a mode and you get the mod to get all the words
+// every word is inside a mode and if you get the mod to get all the words
 @Entity
 @Data
 @AllArgsConstructor
