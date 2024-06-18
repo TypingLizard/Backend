@@ -1,17 +1,13 @@
 package at.kaindorf.lizzardbackend.web;
 
 import at.kaindorf.lizzardbackend.database.UserRepository;
-import at.kaindorf.lizzardbackend.pojos.Mode;
 import at.kaindorf.lizzardbackend.pojos.User;
-import at.kaindorf.lizzardbackend.pojos.Word;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+
 import java.util.Optional;
 
 /**
