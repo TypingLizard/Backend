@@ -50,8 +50,6 @@ public class InsertData {
         modeRepo.save(modeNormal);
 
 
-        log.info("modes posted");
-
 
 
         try {
@@ -76,7 +74,6 @@ public class InsertData {
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
             if (parts.length == 4) {
-                log.info("length is {}", parts.length);
                 String wordName = parts[2];
                 Long rating = Long.parseLong(parts[3]);
                 Long wordId = Long.parseLong(parts[0]);
