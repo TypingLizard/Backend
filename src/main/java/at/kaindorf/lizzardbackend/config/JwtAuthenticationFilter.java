@@ -57,17 +57,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // Extract the JWT token from the Authorization header
         jwt = authHeader.substring(7);
-        log.debug("JWT token extracted: {}", jwt);
 
         // Extract the username from the JWT token
         userName = jwtService.extractUsername(jwt);
-        log.debug("Username extracted from JWT token: {}", userName);
 
         // Check if the username is not null and there is no existing authentication in the security context
         if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             // Load user details from the database or other persistent storage
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userName);
-            log.debug("User details loaded for username: {}", userName);
 
             // Validate the token
             if (jwtService.isTokenValid(jwt, userDetails)) {

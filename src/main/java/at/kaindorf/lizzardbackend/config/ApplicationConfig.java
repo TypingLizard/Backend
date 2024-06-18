@@ -26,14 +26,20 @@ public class ApplicationConfig {
 
     private final UserRepository repository;
 
-    // Bean to provide user details service
+    /**
+     *  Bean to provide user details service
+     * @return
+     */
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> repository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
     }
 
-    // Bean to provide the authentication provider
+    /**
+     * Bean to provide the authentication provider
+     * @return
+     */
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -42,13 +48,21 @@ public class ApplicationConfig {
         return provider;
     }
 
-    // Bean to provide the authentication manager
+    /**
+     * Bean to provide the authentication manager
+     * @param config
+     * @return
+     * @throws Exception
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
-    // Bean to provide the password encoder
+    /**
+     * Bean to provide the password encoder
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

@@ -30,7 +30,12 @@ public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
 
 
-    // filters which request can be made without a token and which need a token
+    /**
+     * filters which request can be made without a token and which need a token
+     * @param http
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -49,8 +54,11 @@ public class SecurityConfig {
     }
 
 
-    // this is needed so it request endpoints from http://localhost:3000 and http://localhost:8080
-    // could be changed after this product would be deployed on a server which is not going to happen
+    /**
+     *  this is needed so it request endpoints from http://localhost:3000 and http://localhost:8080
+     *  could be changed after this product would be deployed on a server which is not going to happen
+     * @return
+     */
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {

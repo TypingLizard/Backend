@@ -32,26 +32,45 @@ public class JwtService {
     private static final String SECRET_KEY = "9e63b71f8a7e3de62e0a303affdb328a664122489c7d88342313b104abe5d5c9";
 
 
-    // extract the username from the token
+    /**
+     *  extract the username from the token
+     * @param token
+     * @return
+     */
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
 
-    // extract a specific claim from the token
+    /**
+     * extract a specific claim from the token
+     * @param token
+     * @param claimsResolver
+     * @return
+     * @param <T>
+     */
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
-    // generate a token for the given user
+    /**
+     * generate a token for the given user
+     * @param user
+     * @return
+     */
     public String generateToken(UserDetails user) {
         log.info("generating token");
         return generateToken(new HashMap<>(), user);
     }
 
 
-    // generate a token with additional claims for the given user
+    /**
+     * generate a token with additional claims for the given user
+     * @param extractClaims
+     * @param user
+     * @return
+     */
     public String generateToken(Map<String, Object> extractClaims, UserDetails user) {
         return Jwts
                 .builder()
@@ -63,23 +82,41 @@ public class JwtService {
                 .compact();
     }
 
-    // validate the token against the given user details
+    /**
+     * validate the token against the given user details
+     * @param token
+     * @param user
+     * @return
+     */
     public boolean isTokenValid(String token, UserDetails user) {
         final String username = extractUsername(token);
         return (username.equals(user.getUsername())) && !isTokenExpired(token);
     }
 
-    // check if the token is expired
+
+    /**
+     * check if the token is expired
+     * @param token
+     * @return
+     */
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
-    // extract the expiration date from the token
+    /**
+     * extract the expiration date from the token
+     * @param token
+     * @return
+     */
     private Date extractExpiration(String token) {
     return extractClaim(token, Claims::getExpiration);
     }
 
-    // extract all claims from the token
+    /**
+     * extract all claims from the token
+     * @param token
+     * @return
+     */
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSinginKey())
@@ -88,7 +125,10 @@ public class JwtService {
                 .getBody();
     }
 
-    // get the signing key for encoding/decoding the token
+    /**
+     * get the signing key for encoding/decoding the token
+     * @return
+     */
     private Key getSinginKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
